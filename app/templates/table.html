@@ -1,0 +1,38 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+
+      <th scope="col">Candidat</th>
+      <th scope="col">Percentage</th>
+      <th scope="col">Number of votes</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for table_object in table_objects %}
+    <tr>
+
+     <td>{{table_object.candidat}}</td>
+     {% if nb_vote != 0%}
+      <td>{{"%.2f"|format(table_object.nb_vote *100/nb_vote)}}</td>
+     {% else %}
+     <td>0</td>
+     {% endif %}
+      <td>{{table_object.nb_vote}}</td>
+    </tr>
+
+    {% endfor %}
+
+
+  </tbody>
+</table>
+
+<dir >
+	<p class="h3"> Total vote number: {{nb_vote}}</p>
+</dir>
+
+
+
+{% endblock %}

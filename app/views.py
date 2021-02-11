@@ -67,6 +67,47 @@ def submit_textarea():
 
     return redirect('/')
 
+@app.route('/index')
+def index2():
+    fetch_posts()
+    return render_template('index.html',
+                           title='YourNet: Decentralized '
+                                 'content sharing',
+                           posts=posts,
+                           node_address=CONNECTED_NODE_ADDRESS,
+                           readable_time=timestamp_to_string)
+
+@app.route('/table', methods= ['GET'])
+def table():
+    nb_vote=0
+    table_objects= [
+
+    {'candidat':'Joe Biden', 'nb_vote': 0},
+    {'candidat':'Emmanuel Macron', 'nb_vote': 0},
+    {'candidat':'Abdelmadjid Tebboune', 'nb_vote': 0},
+    {'candidat':'Frank-Walter Steinmeier', 'nb_vote': 0}
+    ]
+    fetch_posts()
+
+    for post in posts:
+        for table_object in table_objects:
+            print('im in the loop')
+            if post['content'] == table_object['candidat']:
+                table_object['nb_vote'] +=1
+                nb_vote+=1
+                print('incremented')
+    print(table_objects)
+    print(posts)
+    return render_template('table.html',
+                           title='YourNet: Decentralized '
+                                 'content sharing',
+                           table_objects=table_objects,
+                           nb_vote=nb_vote,
+                           node_address=CONNECTED_NODE_ADDRESS,
+                           readable_time=timestamp_to_string)
+
 
 def timestamp_to_string(epoch_time):
     return datetime.datetime.fromtimestamp(epoch_time).strftime('%H:%M')
+
+
