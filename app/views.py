@@ -52,7 +52,6 @@ def submit_textarea():
     """
     post_content = request.form["content"]
     author = request.form["author"]
-
     post_object = {
         'author': author,
         'content': post_content,
@@ -81,7 +80,6 @@ def index2():
 def table():
     nb_vote=0
     table_objects= [
-
     {'candidat':'Joe Biden', 'nb_vote': 0},
     {'candidat':'Emmanuel Macron', 'nb_vote': 0},
     {'candidat':'Abdelmadjid Tebboune', 'nb_vote': 0},
