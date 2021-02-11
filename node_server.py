@@ -197,7 +197,7 @@ def mine_unconfirmed_transactions():
         for block_l in blockchain.chain:
             for tx in block_l.transactions:
                 if(u_tx['author'] == tx['author']):
-                    return 'This elector has already voted'
+                    blockchain.unconfirmed_transactions.remove(u_tx)
             
     result = blockchain.mine()
     if not result:
