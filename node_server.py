@@ -121,7 +121,7 @@ class Blockchain:
             return False
 
         last_block = self.last_block
-
+        
         new_block = Block(index=last_block.index + 1,
                           transactions=self.unconfirmed_transactions,
                           timestamp=time.time(),
@@ -181,6 +181,24 @@ def get_chain():
 # a command to mine from our application itself.
 @app.route('/mine', methods=['GET'])
 def mine_unconfirmed_transactions():
+    tmp = blockchain.unconfirmed_transactions
+    for i in range(len(tmp)):
+        for j in range (i + 1, len(tmp)):
+            if (tmp[i] != {} and tmp[j] != {}):
+                if (tmp[i]['author'] == tmp[j]['author']):
+                    tmp.pop(j)
+                    tmp.insert(j,{})
+                    
+    for elt in tmp:
+        if (elt == {}):
+            tmp.remove(elt)
+    
+    for u_tx in blockchain.unconfirmed_transactions:
+        for block_l in blockchain.chain:
+            for tx in block_l.transactions:
+                if(u_tx['author'] == tx['author']):
+                    return 'This elector has already voted'
+            
     result = blockchain.mine()
     if not result:
         return "No transactions to mine"
@@ -324,4 +342,4 @@ def announce_new_block(block):
                       headers=headers)
 
 # Uncomment this line if you want to specify the port number in the code
-#app.run(debug=True, port=8000)
+app.run(debug=True, port=8000)
