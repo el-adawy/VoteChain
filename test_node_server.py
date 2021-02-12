@@ -1,31 +1,37 @@
-from node_server import app, blockchain
+from node_server import blockchain
 from flask import json
+import requests
 import pytest
 
 def test_1():
 	cpt = 0
-	response = app.test_client().post(
-            '/submit',
-            data = json.dumps({'author' : 'Paul', 'content' : 'Joe Biden'}),
-            content_type = 'application/json',
+	headers = {
+    'Content-type': 'application/x-www-form-urlencoded',
+}
+	data = "{'author' : 'Paul', 'content' : 'Joe Biden'}"
+	response = requests.post(
+            'http://localhost:5000/submit',
+                headers = headers,
+            data = data
         )
-	response = app.test_client().post(
-        '/submit',
-        data = json.dumps({'author' : 'Paul', 'content' : 'Emmanuel Macron'}),
-        content_type = 'application/json',
+	response = requests.post(
+            'http://localhost:5000/submit',
+                headers = headers,
+            data = data
         )
-	response = app.test_client().get(
-        '/mine'
+	response = requests.get(
+        'http://localhost:8000/mine'
         )
-        
-	data = json.loads(response.get_data(as_text=True))
+
+
 
 	assert response.status_code == 200
 
 	for elt in blockchain.chain:
-		for tx in blockchain.transactions:
+		for tx in elt.transactions:
 			if (tx['author'] == 'Paul'):
 				cpt+=1
+
 	assert cpt == 1
     #tester si y a un seul vote de Paul en parcourant la blockchain
     
@@ -33,29 +39,35 @@ def test_1():
 
 def test_2():
 	cpt = 0
-	response = app.test_client().post(
-        '/submit',
-        data = json.dumps({'author' : 'Paul', 'content' : 'Joe Biden'}),
-        content_type = 'application/json',
+	headers = {
+    'Content-type': 'application/json',
+}
+	data = "{'author' : 'Paul', 'content' : 'Joe Biden'}"
+	response = requests.post(
+            'http://localhost:5000/submit',
+                headers = headers,
+            data = data
         )
-	response = app.test_client().get(
-        '/mine'
+	response = requests.get(
+        'http://localhost:8000/mine'
         )
-	response = app.test_client().post(
-        '/submit',
-	data = json.dumps({'author' : 'Paul', 'content' : 'Emmanuel Macron'}),
-        content_type = 'application/json',
+	response = requests.post(
+            'http://localhost:5000/submit',
+                headers = headers,
+            data = data
         )
-	response = app.test_client().get(
-        '/mine'
+	response = requests.get(
+        'http://localhost:8000/mine'
         )
-	data = json.loads(response.get_data(as_text=True))
+
+
 
 	assert response.status_code == 200
-    
+
 	for elt in blockchain.chain:
-		for tx in blockchain.transactions:
-	       		if (tx['author'] == 'Paul'):
-                                cpt+=1
+		for tx in elt.transactions:
+			if (tx['author'] == 'Paul'):
+				cpt+=1
+
 	assert cpt == 1
     #tester si y a un seul vote de Paul en parcourant la blockchain
