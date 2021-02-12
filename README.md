@@ -44,19 +44,15 @@ Here are a few screenshots
 
 1. Posting some content
 
-![image.png](https://github.com/el-adawy/VoteChain/tree/main/screenshots/homepage.PNG)
+![image.png](https://github.com/el-adawy/VoteChain/blob/main/screenshots/homepage.PNG)
 
 2. Requesting the node to mine
 
-![image.png](https://github.com/el-adawy/VoteChain/tree/main/screenshots2.png)
+![image.png](https://github.com/el-adawy/VoteChain/blob/main/screenshots/2.png)
 
-3. Resyncing with the chain for updated data
+3. Checking the table
 
-![image.png](https://github.com/el-adawy/VoteChain/tree/main/screenshots3.png)
-
-4. Checking the table
-
-![image.png](https://github.com/el-adawy/VoteChain/tree/main/screenshotshomepage.PNG)
+![image.png](https://github.com/el-adawy/VoteChain/blob/main/screenshots/table.PNG)
 
 To play around by spinning off multiple custom nodes, use the `register_with/` endpoint to register a new node. 
 
