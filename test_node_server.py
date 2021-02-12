@@ -14,6 +14,10 @@ def test_1():
         data = json.dumps({'author' : 'Paul', 'content' : 'Emmanuel Macron'}),
         content_type = 'application/json',
         )
+	response = app.test_client().get(
+        '/mine'
+        )
+        
 	data = json.loads(response.get_data(as_text=True))
 
 	assert response.status_code == 200
