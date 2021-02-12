@@ -44,15 +44,19 @@ Here are a few screenshots
 
 1. Posting some content
 
-![image.png](https://github.com/satwikkansal/python_blockchain_app/raw/master/screenshots/1.png)
+![image.png](https://github.com/el-adawy/VoteChain/tree/main/screenshots/homepage.PNG)
 
 2. Requesting the node to mine
 
-![image.png](https://github.com/satwikkansal/python_blockchain_app/raw/master/screenshots/2.png)
+![image.png](https://github.com/el-adawy/VoteChain/tree/main/screenshots2.png)
 
 3. Resyncing with the chain for updated data
 
-![image.png](https://github.com/satwikkansal/python_blockchain_app/raw/master/screenshots/3.png)
+![image.png](https://github.com/el-adawy/VoteChain/tree/main/screenshots3.png)
+
+4. Checking the table
+
+![image.png](https://github.com/el-adawy/VoteChain/tree/main/screenshotshomepage.PNG)
 
 To play around by spinning off multiple custom nodes, use the `register_with/` endpoint to register a new node. 
 
@@ -94,4 +98,4 @@ $ curl -X GET http://localhost:8001/chain
 $ curl -X GET http://localhost:8002/chain
 ```
 
-*PS: For consulting, you can reach out to me via Codementor (use [this link](https://www.codementor.io/satwikkansal?partner=satwikkansal) for free 10$ credits).*
+**This code is heavily inspired from this repository: https://github.com/satwikkansal/python_blockchain_app
