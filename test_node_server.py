@@ -30,6 +30,7 @@ def test_1():
 
 
 def test_2():
+    cpt = 0
     response = app.test_client().post(
         '/submit',
         data = json.dumps({'author' : 'Paul', 'content' : 'Joe Biden'}),
